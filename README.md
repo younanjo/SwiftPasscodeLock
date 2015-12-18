@@ -35,7 +35,7 @@ github "velikanov/SwiftPasscodeLock"
 ```
 ## Usage
 
-1. Create an implementation of the `PasscodeRepositoryType` protocol.
+- Create an implementation of the `PasscodeRepositoryType` protocol.
 
 ```swift
 import UIKit
@@ -53,7 +53,7 @@ class PasscodeRepository: PasscodeRepositoryType {
 }
 ```
 
-2. Create an implementation of the `PasscodeLockConfigurationType` protocol and set your preferred passcode lock configuration options. If you set the `maximumInccorectPasscodeAttempts` to a number greather than zero, when user will reach that number of incorrect passcode attempts a notification with name `PasscodeLockIncorrectPasscodeNotification` will be posted on the default `NSNotificationCenter`. 
+- Create an implementation of the `PasscodeLockConfigurationType` protocol and set your preferred passcode lock configuration options. If you set the `maximumInccorectPasscodeAttempts` to a number greather than zero, when user will reach that number of incorrect passcode attempts a notification with name `PasscodeLockIncorrectPasscodeNotification` will be posted on the default `NSNotificationCenter`. 
 
 ```swift
 import UIKit
@@ -76,9 +76,9 @@ class PasscodeLockConfiguration: PasscodeLockConfigurationType {
 }
 ```
 
-3. Create an instance of the `PasscodeLockPresenter` class. Next inside your `UIApplicationDelegate` implementation call it to present the passcode in `didFinishLaunchingWithOptions` and `applicationDidEnterBackground` methods. The passcode lock will be presented only if your user has set a passcode.
+- Create an instance of the `PasscodeLockPresenter` class. Next inside your `UIApplicationDelegate` implementation call it to present the passcode in `didFinishLaunchingWithOptions` and `applicationDidEnterBackground` methods. The passcode lock will be presented only if your user has set a passcode.
 
-4. Allow your users to set a passcode by presenting the `PasscodeLockViewController` in `.SetPasscode` state:
+- Allow your users to set a passcode by presenting the `PasscodeLockViewController` in `.SetPasscode` state:
 ```swift
 let configuration = ... // your implementation of the PasscodeLockConfigurationType protocol
 
