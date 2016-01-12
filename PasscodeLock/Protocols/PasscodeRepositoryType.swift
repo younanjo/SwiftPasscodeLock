@@ -16,3 +16,11 @@ public protocol PasscodeRepositoryType {
     func savePasscode(passcode: [String])
     func deletePasscode()
 }
+
+extension PasscodeRepositoryType {
+
+	var hasPasscode: Bool {
+		return (passcode != nil)
+	}
+
+}
