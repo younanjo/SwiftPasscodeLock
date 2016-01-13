@@ -48,17 +48,16 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
     
     // MARK: - Initializers
     
-    public init(state: PasscodeLockStateType, configuration: PasscodeLockConfigurationType, animateOnDismiss: Bool = true) {
+	public init(state: PasscodeLockStateType, configuration: PasscodeLockConfigurationType, animateOnDismiss: Bool = true, nibName: String = "PasscodeLockView", bundle: NSBundle? = nil) {
         
         self.animateOnDismiss = animateOnDismiss
         
         passcodeConfiguration = configuration
         passcodeLock = PasscodeLock(state: state, configuration: configuration)
         
-        let nibName = "PasscodeLockView"
-        let bundle: NSBundle = bundleForResource(nibName, ofType: "nib")
+        let bundleToUse = bundle ?? bundleForResource(nibName, ofType: "nib")
         
-        super.init(nibName: nibName, bundle: bundle)
+        super.init(nibName: nibName, bundle: bundleToUse)
         
         passcodeLock.delegate = self
         notificationCenter = NSNotificationCenter.defaultCenter()
