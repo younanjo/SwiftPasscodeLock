@@ -18,6 +18,15 @@ class UserDefaultsPasscodeRepository: PasscodeRepositoryType {
         return NSUserDefaults.standardUserDefaults()
     }()
     
+    var hasPasscode: Bool {
+        
+        if passcode != nil {
+            return true
+        }
+        
+        return false
+    }
+    
     var passcode: [String]? {
         
         return defaults.valueForKey(passcodeKey) as? [String] ?? nil
