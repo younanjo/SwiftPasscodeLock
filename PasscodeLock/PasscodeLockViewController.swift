@@ -162,6 +162,8 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
     
     public func authenticateWithBiometrics() {
         
+        guard passcodeConfiguration.repository.hasPasscode else { return }
+
         if passcodeLock.isTouchIDAllowed {
             
             passcodeLock.authenticateWithBiometrics()
