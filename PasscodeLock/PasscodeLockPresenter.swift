@@ -42,6 +42,22 @@ public class PasscodeLockPresenter {
         self.init(mainWindow: window, configuration: configuration, viewController: passcodeLockVC)
     }
     
+    // HACK: below function that handles not presenting the keyboard in case Passcode is presented
+    //       is a smell in the code that had to be introduced for iOS9 where Apple decided to move the keyboard
+    //       in a UIRemoteKeyboardWindow.
+    //       This doesn't allow our Passcode Lock window to move on top of keyboard.
+    //       Setting a higher windowLevel to our window or even trying to change keyboards'
+    //       windowLevel has been tried without luck.
+    //
+    //       Revise in a later version and remove the hack if not needed
+    func toggleKeyboardVisibility(hide hide: Bool) {
+        if let keyboardWindow = UIApplication.sharedApplication().windows.last
+            where keyboardWindow.description.hasPrefix("<UIRemoteKeyboardWindow")
+        {
+            keyboardWindow.alpha = hide ? 0.0 : 1.0
+        }
+    }
+    
     public func presentPasscodeLock() {
         
         guard passcodeConfiguration.repository.hasPasscode else { return }
@@ -49,6 +65,8 @@ public class PasscodeLockPresenter {
         
         isPasscodePresented = true
         passcodeLockWindow.windowLevel = 2
+        
+        toggleKeyboardVisibility(hide: true)
         
         let userDismissCompletionCallback = passcodeLockVC.dismissCompletionCallback
         
@@ -84,11 +102,13 @@ public class PasscodeLockPresenter {
                     self?.passcodeLockWindow.windowLevel = 0
                     self?.passcodeLockWindow.rootViewController = nil
                     self?.passcodeLockWindow.alpha = 1
+                    self?.toggleKeyboardVisibility(hide: false)
                 }
             )
         } else {
             passcodeLockWindow.windowLevel = 0
             passcodeLockWindow.rootViewController = nil
+            toggleKeyboardVisibility(hide: false)
         }
     }
 }
