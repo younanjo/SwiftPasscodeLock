@@ -18,7 +18,7 @@ To integrate PasscodeLock into your Xcode project using CocoaPods, specify it in
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
-pod 'PasscodeLock', '~> 1.0'
+pod 'PasscodeLock', '~> 1.0.2'
 ```
 
 Then, run the following command:
