@@ -278,4 +278,8 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
             deleteSignButton?.enabled = false
         }
     }
+    
+    override public func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 }
