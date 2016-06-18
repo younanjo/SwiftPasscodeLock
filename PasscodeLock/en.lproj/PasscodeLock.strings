@@ -16,7 +16,7 @@
 
 /* Confirm Passcode State */
 "PasscodeLockConfirmTitle" = "Confirm PIN";
-"PasscodeLockConfirmDescription" = "Enter the PIN again.";
+"PasscodeLockConfirmDescription" = "";
 
 /* Change Passcode State */
 "PasscodeLockChangeTitle" = "Enter Old PIN";
